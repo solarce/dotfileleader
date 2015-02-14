@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
+
+# borrowed from https://github.com/test-kitchen/test-kitchen/blob/master/bin/kitchen#L4-L6
+Signal.trap("INT") { exit 1 }
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), %w[.. lib])
+require "rubygems"
+require "dotfileleader/cli"
+
+print "Welcome to dotfileleader."

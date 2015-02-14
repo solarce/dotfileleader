@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mixlib-shellout (2.0.1)
+    rsync (1.0.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mixlib-shellout (~> 2.0.1)
+  rsync (~> 1.0.9)
