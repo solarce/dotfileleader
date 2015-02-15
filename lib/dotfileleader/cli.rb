@@ -16,7 +16,23 @@
 # limitations under the License.
 #
 
+require 'clamp'
+
 require "dotfileleader"
 require "dotfileleader/rsync"
 
-is_rsync_installed()
+Clamp do
+
+  subcommand ["rsync", "sync"], "sync your files and binaries" do
+    option "--src-path", "SRC_PATH", "Where to sync from", :required => true
+    option "--dst-path", "DST_PATH", "Where to sync to", :required => true
+
+    def execute
+      is_rsync_installed()
+      is_ssh = true
+      run_rsync(src_path, dst_path, is_ssh)
+    end
+
+  end
+end
+

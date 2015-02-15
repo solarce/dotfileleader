@@ -24,6 +24,24 @@ def is_rsync_installed()
   rsync_installed = Mixlib::ShellOut.new("/usr/bin/env which rsync")
   rsync_installed.run_command
   if rsync_installed.exitstatus == 1
-    print "You need to install rsync to use dotfileleader"
+    puts "You need to install rsync to use dotfileleader"
+  end
+end
+
+def run_rsync(src_path, dst_path, is_ssh)
+  # src_path and dst_path should include a trailing slash
+  # e.g. /path/to/src/ and /path/to/dst/
+  if is_ssh == true
+    args = "-e ssh -aP"
+  else
+    args = "-aP"
+  end
+
+  result = Rsync.run(src_path, dst_path, args = [args])
+  if result.success?
+    puts "Successfully synced #{src_path} to #{dst_path}"
+  else
+    puts result.error
+    p result.changes
   end
 end

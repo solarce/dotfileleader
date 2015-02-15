@@ -7,5 +7,3 @@ Signal.trap("INT") { exit 1 }
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), %w[.. lib])
 require "rubygems"
 require "dotfileleader/cli"
-
-print "Welcome to dotfileleader."
