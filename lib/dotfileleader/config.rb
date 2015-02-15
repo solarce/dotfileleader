@@ -16,8 +16,18 @@
 # limitations under the License.
 #
 
-require "mixlib/shellout"
-require 'pp'
-require "dotfileleader/cli"
-require "dotfileleader/config"
-require "dotfileleader/rsync"
+require "toml"
+
+def load_config(options = {})
+
+  if options[:config_file] == nil
+    home = ENV['HOME']
+    config_file = "#{home}/.dotfileleader.rc"
+    config = TOML.load_file(config_file)
+  else
+    config = TOML.load_file(options[:config_file])
+  end
+  if options[:show_config] == true
+    PP.pp(config)
+  end
+end

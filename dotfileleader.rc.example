@@ -1,0 +1,52 @@
+# TOML format: https://github.com/toml-lang/toml
+
+[hosts]
+# Put your groups of hosts here.
+# - You can use wildcards in the domains
+# - Host blocks should be indented and have `hosts.`
+#   at the beginning of the name.
+
+  [hosts.personal]
+  domains = [
+    "my.biz"
+  ]
+
+  [hosts.work]
+  domains = [
+    "work.local",
+    "work.org",
+    "work.net"
+  ]
+
+[dotfiles]
+# Here is where you define groups of files
+# or folders that you'll want synced to machines.
+
+  [dotfiles.dirs]
+  # sets of directories that belong together
+    aws_configs = [
+      ".aam",
+      ".aws"
+    ]
+
+  [dotfiles.files]
+  # sets of files that belong together
+  zsh_configs = [
+    ".zshrc",
+    ".zsh_aliases"
+  ]
+
+[filesets]
+# Filesets are an easy way to group together
+# files and folders. Filesets are combined with
+# hosts to define what is synced where.
+
+personal = [
+  "aws_configs",
+  "zsh_configs"
+  ]
+
+work = [
+  "aws_configs",
+  "zsh_configs"
+  ]
