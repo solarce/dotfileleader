@@ -1,3 +1,4 @@
+# vi: ft=toml
 # TOML format: https://github.com/toml-lang/toml
 
 [hosts]
