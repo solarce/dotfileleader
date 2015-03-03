@@ -11,6 +11,12 @@
   domains = [
     "my.biz"
   ]
+  servers = [
+    "desktop.my.biz"
+  ]
+  filesets = [
+    "personal"
+  ]
 
   [hosts.work]
   domains = [
@@ -18,20 +24,22 @@
     "work.org",
     "work.net"
   ]
+  servers = [
+    "bastion.work.org"
+  ]
+  filesets = [
+    "work"
+  ]
 
 [dotfiles]
 # Here is where you define groups of files
 # or folders that you'll want synced to machines.
 
-  [dotfiles.dirs]
-  # sets of directories that belong together
-    aws_configs = [
-      ".aam",
-      ".aws"
-    ]
+  aws_configs = [
+    ".aam",
+    ".aws"
+  ]
 
-  [dotfiles.files]
-  # sets of files that belong together
   zsh_configs = [
     ".zshrc",
     ".zsh_aliases"

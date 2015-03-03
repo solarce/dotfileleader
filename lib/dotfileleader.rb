@@ -18,6 +18,19 @@
 
 require "mixlib/shellout"
 require 'pp'
+
 require "dotfileleader/cli"
 require "dotfileleader/config"
 require "dotfileleader/rsync"
+
+# Easily print the contents of an object
+def pprint(object)
+  PP.pp(object)
+end
+
+# Print strings with variable indentation
+def fprint(object, depth = 0)
+  #puts "%10s" % ["foo"]
+  puts "%10s" % [object.to_s]
+end
+

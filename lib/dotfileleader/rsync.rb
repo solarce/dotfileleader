@@ -16,10 +16,8 @@
 # limitations under the License.
 #
 
-# Helper functions for using rsync
-
-require "rsync"
-
+# Detects if rsync is present and exits with an error
+# if it is not
 def is_rsync_installed()
   rsync_installed = Mixlib::ShellOut.new("/usr/bin/env which rsync")
   rsync_installed.run_command
@@ -29,10 +27,14 @@ def is_rsync_installed()
   end
 end
 
+# Syncs the source and destination using rsync
+# - assumes that the destination is remote
+# - Will give additional output if --verbose is included
+#   on the command line
+# - has error handling
 def run_rsync(options = {})
-  # src_path and dst_path should include a trailing slash
-  # e.g. /path/to/src/ and /path/to/dst/
 
+  # Ensure the rsync binary is present
   is_rsync_installed()
 
   if options[:is_ssh] == true

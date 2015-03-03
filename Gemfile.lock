@@ -6,7 +6,6 @@ GEM
     mixlib-shellout (2.0.1)
     parslet (1.6.2)
       blankslate (>= 2.0, <= 4.0)
-    rsync (1.0.9)
     toml (0.0.4)
       parslet
 
@@ -16,5 +15,4 @@ PLATFORMS
 DEPENDENCIES
   clamp (~> 0.6.3)
   mixlib-shellout (~> 2.0.1)
-  rsync (~> 1.0.9)
   toml (~> 0.0.3)
