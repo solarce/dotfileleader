@@ -59,3 +59,35 @@ work = [
   "aws_configs",
   "zsh_configs"
   ]
+
+[symlinks]
+# dotfileleader can manage sets of links.
+# Useful for when you want to populate a ~/bin from
+# various sources.
+# - *Important Note*: By default dotfileleader will check if
+#   any source files are executable and will "chmod +x" them
+#   if they aren't.
+# - If you don't want this to happen, set `auto_make_exec = false`
+# - If source paths don't begin with a "/", they are
+#   assumed to be relative to $HOME
+# - Destination is set in the name of the block, using
+#   underscores to separate the path, e.g. [symlinks.usr_local_bin]
+# - home_bin is consider special and will default to ~/bin
+# - If a source path ends in a trailing slash "/" then dotfileleader
+#   will assume it's a folder and all files in the folder should be
+#   symlinked into the destination
+
+auto_make_exec = true
+
+  [symlinks.home_bin]
+  sources = [
+    "code/dotfiles/bin/",
+    "code/dotfileleader/bin/dotfileleader"
+  ]
+
+  [symlinks.usr_local_bin]
+  sources = [
+    "code/dotfiles/bin/aam",
+    "code/dotfileleader/bin"
+  ]
+

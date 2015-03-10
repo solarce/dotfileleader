@@ -24,14 +24,15 @@ require "toml"
 # - This can be overridden with -c or
 #   --config on the command line
 def load_config(options = {})
-
   # Assume the default location if no
   # command-line location is provided
   if options[:config_file] == nil
     home = ENV['HOME']
     config_file = "#{home}/.dotfileleader.rc"
+    puts "Loading default config #{config_file}"
     config = TOML.load_file(config_file)
   else
+    puts "Loading #{options[:config_file]}"
     config = TOML.load_file(options[:config_file])
   end
 

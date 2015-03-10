@@ -34,6 +34,10 @@ Clamp do
     option "--hosts", "HOSTS", "The set of hosts to sync", :required => true
 
     def execute
+      config_options= {
+        :config_file => config
+      }
+
       config = load_config()
       sync_options = {
         :is_ssh => true,
@@ -50,19 +54,42 @@ Clamp do
 
   end
 
+  # Manages sets of symlinks, both for config files from repos
+  # and for binaries you want in ~/bin
+  # --mode should be either local
+  # TODO: Implement remote mode
+  #   - and use --hosts is only required when using remote mode
+  subcommand ["symlink", "symlink_manager"], "manages your symlinks" do
+    option "--mode", "MODE", "available modes are 'local'", :required => true
+    #option "--hosts", "HOSTS", "If mode is remote, specify the hosts to setup symlinks on"
+
+    def execute
+      config_options= {
+        :config_file => config
+      }
+      config = load_config(options = config_options)
+      symlink_options = {
+        :mode => mode,
+      }
+      if defined?(hosts)
+        symlink_options[:hosts] = hosts
+      end
+      manage_symlinks(config, options = symlink_options)
+    end
+  end
+
   # Reads and outputs the config file.
   # - Assumes the file is in ~/.dotfileleader.rc unless
   #   -c or --config is included on the command line
   subcommand "show_config", "shows the current config" do
-
     def execute
       options = { :show_config => true }
       if config != nil
-        p "loading #{config}"
-        options[:config_file] = config_file
+        puts "loading #{config}"
+        options[:config_file] = config
         load_config(options = options)
       else
-        p "using default config"
+        puts "using default config"
         load_config(options = options)
       end
     end

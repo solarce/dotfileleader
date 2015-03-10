@@ -22,6 +22,7 @@ require 'pp'
 require "dotfileleader/cli"
 require "dotfileleader/config"
 require "dotfileleader/rsync"
+require "dotfileleader/symlink_manager"
 
 # Easily print the contents of an object
 def pprint(object)
